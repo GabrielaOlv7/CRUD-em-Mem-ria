@@ -17,4 +17,19 @@ app.get('/materia/:id', function (req,res){
   const item = lista [id-1]
   res.send(item)
 })
+
+//sinaliza para o express que estamos usando json no body 
+app.use(express.json())
+
+//create [POST]/materia
+app.post('/materia', function (req,res){
+  //acessamos o body da requisição
+  const body = req.body
+  //acessamos a propriedade 'nome' do body 
+  const novoItem = body.nome
+  //adicionamos na lista
+  lista.push(novoItem)
+  //exibimos uma mensagem de sucesso
+  res.send('item adicionado com sucesso: ' + novoItem)
+})
 app.listen(3000)
