@@ -27,6 +27,14 @@ app.post('/materia', function (req,res){
   const body = req.body
   //acessamos a propriedade 'nome' do body 
   const novoItem = body.nome
+  //checa se o 'nome' está presente no body 
+  if(!novoItem){
+    return res.send('corpo da requisição deve conter a propriedade `nome`')
+  }
+  //checa se o novoItem esta na lista ou não 
+  if(lista.includes(novoItem)){
+    return res.send('item ja existe na lista')
+  }
   //adicionamos na lista
   lista.push(novoItem)
   //exibimos uma mensagem de sucesso
@@ -41,6 +49,14 @@ app.put('/materia/:id', function (req,res){
   const body = req.body
   //acessamos a propriedade 'nome' do body
   const novoItem = body.nome
+  //checa se o 'nome' está presente no body 
+  if(!novoItem){
+    return res.send('corpo da requisição deve conter a propriedade `nome`')
+  }
+  //checa se o novoItem esta na lista ou não 
+  if(lista.includes(novoItem)){
+    return res.send('item ja existe na lista')
+  }
   //atualizamos na lista o novoItem pelo id-1 
   lista[id-1] = novoItem
   //enviamos uma mensagem de sucesso 
