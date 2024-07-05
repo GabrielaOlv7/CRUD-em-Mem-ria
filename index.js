@@ -15,6 +15,10 @@ app.get('/materia/:id', function (req,res){
   const id = req.params.id
   //acessa o item da lista usando id -1
   const item = lista [id-1]
+  //checa se o item obtido é existente
+  if(!item){
+    return res.status(404).send('item não encontrado.')
+  }
   res.send(item)
 })
 
@@ -45,6 +49,11 @@ app.post('/materia', function (req,res){
 app.put('/materia/:id', function (req,res){
   //acessamos o id dos parametros de rota
   const id = req.params.id
+  //checamos se o item do id-1 está na lista, exibindo,
+  //uma mensagem caso não esteja 
+  if(!lista[id-1]){
+    return res.status(404).send('item não encontrado.')
+  }
   //acessamos o body da requisição 
   const body = req.body
   //acessamos a propriedade 'nome' do body
@@ -67,6 +76,11 @@ app.put('/materia/:id', function (req,res){
 app.delete('/materia/:id', function (req,res){
   //acessamos o id do parametro de rota
   const id = req.params.id
+  //checamos se o item do id-1 está na lista, exibindo,
+  //uma mensagem caso não esteja 
+  if(!lista[id-1]){
+    return res.status(404).send('item não encontrado.')
+  }
   //remover o item da lista usando id-1
   delete lista[id-1]
   //enviamos uma mensagem de sucesso 
