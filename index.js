@@ -32,4 +32,18 @@ app.post('/materia', function (req,res){
   //exibimos uma mensagem de sucesso
   res.send('item adicionado com sucesso: ' + novoItem)
 })
+
+//upadate [PUT]/materia/:id
+app.put('/materia/:id', function (req,res){
+  //acessamos o id dos parametros de rota
+  const id = req.params.id
+  //acessamos o body da requisição 
+  const body = req.body
+  //acessamos a propriedade 'nome' do body
+  const novoItem = body.nome
+  //atualizamos na lista o novoItem pelo id-1 
+  lista[id-1] = novoItem
+  //enviamos uma mensagem de sucesso 
+  res.send('item atualizado com sucesso: ' + id  + '-' + novoItem)
+})
 app.listen(3000)
