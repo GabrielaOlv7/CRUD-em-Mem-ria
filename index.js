@@ -29,16 +29,16 @@ app.post('/materia', function (req,res){
   const novoItem = body.nome
   //checa se o 'nome' está presente no body 
   if(!novoItem){
-    return res.send('corpo da requisição deve conter a propriedade `nome`')
+    return res.status(400).send('corpo da requisição deve conter a propriedade `nome`')
   }
   //checa se o novoItem esta na lista ou não 
   if(lista.includes(novoItem)){
-    return res.send('item ja existe na lista')
+    return res.status(409).send('item ja existe na lista')
   }
   //adicionamos na lista
   lista.push(novoItem)
   //exibimos uma mensagem de sucesso
-  res.send('item adicionado com sucesso: ' + novoItem)
+  res.status(201).send('item adicionado com sucesso: ' + novoItem)
 })
 
 //upadate [PUT]/materia/:id
@@ -51,16 +51,16 @@ app.put('/materia/:id', function (req,res){
   const novoItem = body.nome
   //checa se o 'nome' está presente no body 
   if(!novoItem){
-    return res.send('corpo da requisição deve conter a propriedade `nome`')
+    return res.status(400).send('corpo da requisição deve conter a propriedade `nome`')
   }
   //checa se o novoItem esta na lista ou não 
   if(lista.includes(novoItem)){
-    return res.send('item ja existe na lista')
+    return res.status(409).send('item ja existe na lista')
   }
   //atualizamos na lista o novoItem pelo id-1 
   lista[id-1] = novoItem
   //enviamos uma mensagem de sucesso 
-  res.send('item atualizado com sucesso: ' + id  + '-' + novoItem)
+  res.status(201).send('item atualizado com sucesso: ' + id  + '-' + novoItem)
 })
 
 //delete [DELETE] /matreria/:id
