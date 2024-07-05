@@ -7,7 +7,7 @@ app.get('/', function (req, res) {
 const lista = ['c++','Python','POO Java']
 //Read all [GET] /matérias
 app.get('/materia', function (req,res){
-  res.send(lista)
+  res.send(lista.filter(Boolean))
 })
 //endpoint read by id [GET]/materia/:id
 app.get('/materia/:id', function (req,res){
@@ -45,5 +45,15 @@ app.put('/materia/:id', function (req,res){
   lista[id-1] = novoItem
   //enviamos uma mensagem de sucesso 
   res.send('item atualizado com sucesso: ' + id  + '-' + novoItem)
+})
+
+//delete [DELETE] /matreria/:id
+app.delete('/materia/:id', function (req,res){
+  //acessamos o id do parametro de rota
+  const id = req.params.id
+  //remover o item da lista usando id-1
+  delete lista[id-1]
+  //enviamos uma mensagem de sucesso 
+  res.send('item removido com sucesso ' + id)
 })
 app.listen(3000)
